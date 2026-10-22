@@ -46,12 +46,22 @@ página los muestra con la etiqueta "Confirmar antes de visitar":
 
 ## Publicar
 
-El resultado de `npm run build` (carpeta `dist/`) es un sitio estático. Se puede publicar gratis en Netlify,
-Vercel, Cloudflare Pages o GitHub Pages:
+### Vista previa para el cliente (GitHub Pages)
 
-- **Netlify / Vercel / Cloudflare Pages:** conecta el repositorio, comando de compilación `npm run build`,
-  carpeta de salida `dist`.
-- Después de publicar, coloca el dominio en `siteUrl` dentro de `src/config/site.ts` y vuelve a compilar.
+El flujo `.github/workflows/deploy.yml` compila y publica el sitio cada vez que hay cambios en `main`.
+
+1. En GitHub, abre **Settings → Pages** y en **Source** elige **GitHub Actions** (solo la primera vez).
+2. Fusiona el PR en `main`, o ejecuta el flujo a mano desde **Actions → Publicar vista previa → Run workflow**.
+3. La demo queda en `https://andremartti.github.io/Lekes/`.
+
+La vista previa lleva `noindex` para que Google no la indexe antes de que el negocio la apruebe. Para la versión
+definitiva, quita `PREVIEW: '1'` del flujo o publícala en el dominio del negocio.
+
+### Sitio definitivo
+
+El resultado de `npm run build` (carpeta `dist/`) es un sitio estático con rutas relativas. Funciona en Netlify,
+Vercel, Cloudflare Pages o cualquier hosting: comando de compilación `npm run build` y carpeta de salida `dist`.
+Después de publicar, coloca el dominio en `siteUrl` dentro de `src/config/site.ts` y vuelve a compilar.
 
 ## Fuentes de la información
 

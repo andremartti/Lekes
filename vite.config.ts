@@ -13,7 +13,10 @@ const escape = (s: string) =>
  */
 function seo(): Plugin {
   const title = `${site.name} | Piscinas y eventos en Siguatepeque`
-  const url = site.siteUrl
+  // SITE_URL permite fijar el dominio al compilar (lo usa la vista previa de GitHub Pages).
+  const url = (process.env.SITE_URL || site.siteUrl).replace(/\/$/, '')
+  // PREVIEW=1 marca la compilación como demo: no se indexa en buscadores.
+  const preview = process.env.PREVIEW === '1'
   const ogImage = `${url}/og-image.png`
 
   const jsonLd = {
@@ -37,6 +40,7 @@ function seo(): Plugin {
 
   const tags = [
     `<title>${escape(title)}</title>`,
+    ...(preview ? [`<meta name="robots" content="noindex, nofollow" />`] : []),
     `<meta name="description" content="${escape(site.description)}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:locale" content="es_HN" />`,
@@ -60,9 +64,11 @@ function seo(): Plugin {
       this.emitFile({
         type: 'asset',
         fileName: 'robots.txt',
-        source: `User-agent: *\nAllow: /\n${url ? `\nSitemap: ${url}/sitemap.xml\n` : ''}`,
+        source: preview
+          ? 'User-agent: *\nDisallow: /\n'
+          : `User-agent: *\nAllow: /\n${url ? `\nSitemap: ${url}/sitemap.xml\n` : ''}`,
       })
-      if (url) {
+      if (url && !preview) {
         this.emitFile({
           type: 'asset',
           fileName: 'sitemap.xml',
@@ -74,5 +80,7 @@ function seo(): Plugin {
 }
 
 export default defineConfig({
+  // Rutas relativas: el sitio funciona en la raíz de un dominio o en una subcarpeta (GitHub Pages).
+  base: './',
   plugins: [react(), tailwindcss(), seo()],
 })
