@@ -1,0 +1,155 @@
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource-variable/manrope/wght.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Paleta: laguna profunda, agua turquesa, arena cálida, hoja y sol. */
+  --color-ink: #0c2830;
+  --color-lagoon-900: #0b3a44;
+  --color-lagoon-700: #0f5866;
+  --color-lagoon-500: #16808b;
+  --color-water: #22a6a8;
+  --color-foam: #e3f3f0;
+  --color-sand: #f7f2e8;
+  --color-sand-100: #f2ead9;
+  --color-sand-200: #efe6d4;
+  --color-leaf: #3a7350;
+  --color-leaf-100: #e2eedf;
+  --color-sun: #f5b83d;
+  --color-sun-300: #f8cc70;
+  --color-hibiscus: #d9573d;
+  --color-whatsapp: #25d366;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-sand text-ink font-sans antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-sun);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-sun-300);
+    color: var(--color-ink);
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-bold tracking-[0.18em] uppercase;
+}
+
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-bold transition duration-300;
+  transition-timing-function: var(--ease-out-soft);
+}
+
+@utility btn-primary {
+  @apply btn bg-sun text-ink hover:bg-sun-300 shadow-[0_10px_30px_-12px_rgba(245,184,61,0.9)] hover:-translate-y-0.5;
+}
+
+@utility btn-ghost-light {
+  @apply btn border border-white/50 text-white backdrop-blur-sm hover:border-white hover:bg-white/10;
+}
+
+@utility btn-dark {
+  @apply btn bg-ink text-sand hover:bg-lagoon-900 hover:-translate-y-0.5;
+}
+
+@utility btn-outline {
+  @apply btn border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-sand border;
+}
+
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease-out-soft);
+  &:hover {
+    background-size: 100% 1.5px;
+  }
+}
+
+/* Apariciones al desplazarse. Solo se ocultan si hay JS y no se pidió movimiento reducido. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.8s var(--ease-out-soft),
+      transform 0.8s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-kenburns {
+    animation: kenburns 18s var(--ease-out-soft) both;
+  }
+  @keyframes kenburns {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
