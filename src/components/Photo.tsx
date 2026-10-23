@@ -16,13 +16,15 @@ interface PhotoProps {
   sizes?: string
   /** Oculta la etiqueta del espacio vacío (útil en miniaturas). */
   compact?: boolean
+  /** Encuadre para este uso (CSS object-position); por defecto el de la configuración. */
+  position?: string
 }
 
 /**
  * Muestra la foto real si existe en src/assets/fotos/; si no, un espacio
  * de diseño claramente identificado como "foto pendiente".
  */
-export function Photo({ id, className = '', priority, sizes, compact }: PhotoProps) {
+export function Photo({ id, className = '', priority, sizes, compact, position }: PhotoProps) {
   const info = photos[id]
   const src = photoSrc(id)
 
@@ -36,6 +38,7 @@ export function Photo({ id, className = '', priority, sizes, compact }: PhotoPro
         fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         className={`h-full w-full object-cover ${className}`}
+        style={{ objectPosition: position ?? info.position }}
       />
     )
   }

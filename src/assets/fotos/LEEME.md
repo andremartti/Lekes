@@ -1,24 +1,26 @@
 # Fotografías de Leke's
 
-Copia aquí las fotos reales con estos nombres (se acepta .jpg, .jpeg, .png, .webp o .avif).
-El sitio las detecta solo al compilar; mientras falten, muestra un espacio de diseño "Foto pendiente".
+Cada foto vive aquí con el nombre de la tabla (se acepta .jpg, .jpeg, .png, .webp o .avif). El sitio las
+detecta solo al compilar. Para cambiar una foto, reemplaza el archivo manteniendo el nombre.
 
-| Archivo        | Dónde aparece                         | Qué debe mostrar |
-|----------------|---------------------------------------|------------------|
-| hero           | Portada (pantalla completa)           | Vista amplia de la piscina principal, horizontal |
-| piscina-adultos| Sección "Sobre Leke's"                | Piscina para adultos (vertical funciona mejor) |
-| areas-verdes   | Sección "Sobre Leke's"                | Jardines, árboles y flores |
-| piscina-ninos  | Instalaciones / Experiencias          | Piscina infantil con figuras |
-| toboganes      | Instalaciones                         | Toboganes, delfines, cascadas o puentes |
-| juegos         | Instalaciones                         | Juegos infantiles |
-| restaurante    | Instalaciones                         | Platillo del restaurante |
-| academia       | Academia de natación                  | Clase de natación (con permiso de las familias) |
-| salon          | Eventos                               | Salón montado para una celebración |
-| familia        | Experiencias                          | Familia en la piscina (con permiso) |
-| amigos         | Experiencias                          | Grupo de amigos |
-| celebracion    | Experiencias                          | Cumpleaños o reunión familiar |
-| galeria-1 … galeria-6 | Galería                        | Otras vistas del lugar |
+| Archivo            | Dónde aparece                                   | Qué muestra                                    |
+| ------------------ | ----------------------------------------------- | ---------------------------------------------- |
+| hero               | Portada (pantalla completa) y galería           | Vista amplia de las piscinas (horizontal)      |
+| kioscos-flores     | Sobre Leke's, Experiencias y galería            | Kiosco con mesas junto a la piscina            |
+| jardin-arcos       | Sobre Leke's y galería                          | Sendero con arcos de flores                    |
+| piscina-puente     | Instalaciones, Experiencias y galería           | Piscina con puente de madera y juegos al fondo |
+| piscina-delfin     | Instalaciones y galería                         | Piscina redonda con puente y tobogán           |
+| vista-aerea        | Instalaciones y galería                         | Vista aérea                                    |
+| ninos-piscina      | Experiencias y galería                          | Bañistas en la piscina redonda                 |
+| rancho-piscina     | Experiencias y galería                          | Rancho junto a la piscina                      |
+| piscina-carriles   | Academia de natación y galería                  | Piscina con carriles                           |
+| panoramica-kioscos | Eventos (mientras falte la del salón) y galería | Vista general con las montañas de fondo        |
+| torre-roca         | Galería                                         | Piscina junto a la torre de roca               |
+| **restaurante**    | Instalaciones · **falta**                       | Un platillo del restaurante                    |
+| **salon**          | Eventos · **falta**                             | El salón montado para una celebración          |
 
-Recomendaciones: lado mayor de 1600–2400 px y menos de 400 KB por foto (puedes usar squoosh.app).
-Usa solo fotos propias del establecimiento o con permiso de su autor.
-Los textos alternativos se editan en `src/config/photos.ts`.
+Al agregar `restaurante.jpg` o `salon.jpg`, aparecen solas en su sección.
+
+Recomendaciones: lado mayor de 1600–2400 px y menos de 400 KB por foto (puedes usar squoosh.app). Usa solo
+fotos propias del establecimiento o con permiso de su autor. Los textos alternativos y el orden de la galería
+se editan en `src/config/photos.ts`.

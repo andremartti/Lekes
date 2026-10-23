@@ -11,6 +11,8 @@ interface Experience {
   text: string
   points: string[]
   photo: PhotoId
+  /** Encuadre de la foto en este panel (CSS object-position). */
+  position?: string
   topic: WhatsappTopic
   cta: string
 }
@@ -26,7 +28,7 @@ const experiences: Experience[] = [
       'Restaurante dentro del centro',
       'Área de descanso y jardines',
     ],
-    photo: 'familia',
+    photo: 'ninos-piscina',
     topic: 'familia',
     cta: 'Planear nuestra visita',
   },
@@ -36,7 +38,8 @@ const experiences: Experience[] = [
     title: 'El plan de fin de semana con tu grupo',
     text: 'Toboganes, sol y una parrillada para compartir. Un día sin prisa para ponerse al día con los amigos.',
     points: ['Toboganes y cascadas', 'Parrillada familiar para compartir', 'Espacio para tomar el sol'],
-    photo: 'amigos',
+    photo: 'kioscos-flores',
+    position: '50% 65%',
     topic: 'grupos',
     cta: 'Consultar para un grupo',
   },
@@ -46,7 +49,8 @@ const experiences: Experience[] = [
     title: 'Un día entero de juego para los niños',
     text: 'Piscinas a su medida, figuras de delfines, juegos infantiles y, si quieren aprender, la academia de natación.',
     points: ['Piscina infantil con figuras', 'Juegos infantiles', 'Academia de natación'],
-    photo: 'piscina-ninos',
+    photo: 'piscina-puente',
+    position: '50% 45%',
     topic: 'familia',
     cta: 'Preguntar por los niños',
   },
@@ -56,7 +60,8 @@ const experiences: Experience[] = [
     title: 'Fechas especiales que se celebran en grande',
     text: 'Cumpleaños, bautizos o reuniones familiares en el salón de eventos, dentro del mismo centro recreativo.',
     points: ['Salón para eventos', 'Cumpleaños, bautizos y más', 'Atención directa por WhatsApp'],
-    photo: 'celebracion',
+    photo: 'rancho-piscina',
+    position: '50% 75%',
     topic: 'eventos',
     cta: 'Consultar por un evento',
   },
@@ -129,9 +134,12 @@ export function Experiences() {
         >
           <div
             key={exp.photo}
-            className="aspect-[4/3] overflow-hidden rounded-[2rem] motion-safe:animate-[fade_0.6s_ease-out] lg:col-span-7 lg:aspect-auto lg:min-h-[30rem]"
+            className="relative aspect-[4/3] overflow-hidden rounded-[2rem] motion-safe:animate-[fade_0.6s_ease-out] lg:col-span-7 lg:aspect-auto lg:min-h-[30rem]"
           >
-            <Photo id={exp.photo} sizes="(min-width: 1024px) 58vw, 100vw" />
+            {/* Posición absoluta: la altura la marca el texto, no el tamaño de la foto. */}
+            <div className="absolute inset-0">
+              <Photo id={exp.photo} position={exp.position} sizes="(min-width: 1024px) 58vw, 100vw" />
+            </div>
           </div>
           <div
             key={exp.id}

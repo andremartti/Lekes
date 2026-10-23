@@ -23,8 +23,8 @@ export function About() {
           <div className="text-ink/75 mt-7 max-w-xl space-y-4 text-lg leading-relaxed">
             <p>
               Leke's es un centro recreativo familiar en el Barrio San Luis de Aguas Calientes de
-              Siguatepeque. Sus piscinas, decoradas con figuras, toboganes y pequeñas cascadas, están rodeadas
-              de jardines con árboles y flores de colores.
+              Siguatepeque. Sus piscinas, con figuras de delfines, puentes de madera y toboganes, están
+              rodeadas de palmeras, jardines con flores de colores y kioscos con mesas para compartir.
             </p>
             <p>
               Es el tipo de lugar al que se viene a pasar el día completo: los niños entre el agua y los
@@ -36,14 +36,14 @@ export function About() {
         <div className="relative lg:col-span-6">
           <div className="grid grid-cols-5 gap-4">
             <div className="col-span-3 aspect-[3/4] overflow-hidden rounded-[2rem]" data-reveal>
-              <Photo id="piscina-adultos" sizes="(min-width: 1024px) 30vw, 60vw" />
+              <Photo id="kioscos-flores" sizes="(min-width: 1024px) 30vw, 60vw" />
             </div>
             <div
               className="col-span-2 mt-16 aspect-[3/5] overflow-hidden rounded-[2rem]"
               data-reveal
               style={{ ['--reveal-delay' as string]: '120ms' }}
             >
-              <Photo id="areas-verdes" sizes="(min-width: 1024px) 20vw, 40vw" compact />
+              <Photo id="jardin-arcos" sizes="(min-width: 1024px) 20vw, 40vw" compact />
             </div>
           </div>
           <div
