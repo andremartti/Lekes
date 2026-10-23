@@ -1,3 +1,4 @@
+import { photoSrc } from '../config/photos'
 import { whatsappLink } from '../config/site'
 import { WhatsappIcon } from './icons'
 import { Photo } from './Photo'
@@ -16,6 +17,8 @@ const steps = [
 ]
 
 export function Events() {
+  // Mientras no haya foto del salón, se muestra una vista general del centro, rotulada como tal.
+  const hasSalonPhoto = Boolean(photoSrc('salon'))
   return (
     <section
       id="eventos"
@@ -70,10 +73,18 @@ export function Events() {
         </div>
 
         <div className="lg:col-span-7" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
-          <div className="group aspect-[16/11] overflow-hidden rounded-[2rem]">
+          <div className="group relative aspect-[16/11] overflow-hidden rounded-[2rem]">
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <Photo id="salon" sizes="(min-width: 1024px) 55vw, 100vw" />
+              <Photo
+                id={hasSalonPhoto ? 'salon' : 'panoramica-kioscos'}
+                sizes="(min-width: 1024px) 55vw, 100vw"
+              />
             </div>
+            {!hasSalonPhoto && (
+              <p className="absolute bottom-4 left-4 rounded-full bg-black/35 px-3 py-1.5 text-xs font-semibold backdrop-blur-md">
+                Vista general de Leke's
+              </p>
+            )}
           </div>
           <ol className="mt-8 grid gap-6 sm:grid-cols-3">
             {steps.map((s) => (

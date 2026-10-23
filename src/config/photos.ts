@@ -1,10 +1,13 @@
 /**
  * Fotografías del sitio.
  *
- * Para usar una foto real basta con copiarla a `src/assets/fotos/` con el
- * nombre indicado en `file` (se aceptan .jpg, .jpeg, .png, .webp o .avif).
- * Vite la optimiza y la publica con un nombre único; mientras falte, el
- * sitio muestra un espacio de diseño con la descripción de la foto esperada.
+ * Cada foto vive en `src/assets/fotos/` con el nombre indicado en `file`
+ * (se aceptan .jpg, .jpeg, .png, .webp o .avif). Vite la optimiza y la
+ * publica con un nombre único. Para cambiar una foto basta con reemplazar
+ * el archivo manteniendo el nombre.
+ *
+ * `restaurante` y `salon` aún no tienen foto: al agregar `restaurante.jpg`
+ * o `salon.jpg`, las secciones de restaurante y eventos las muestran solas.
  *
  * Usa solo fotos propias del establecimiento o con permiso de su autor.
  * Recomendado: lado mayor de 1600–2400 px, comprimidas a menos de 400 KB.
@@ -12,23 +15,18 @@
 
 export type PhotoId =
   | 'hero'
-  | 'piscina-adultos'
-  | 'piscina-ninos'
-  | 'toboganes'
-  | 'areas-verdes'
-  | 'juegos'
+  | 'kioscos-flores'
+  | 'piscina-puente'
+  | 'piscina-delfin'
+  | 'jardin-arcos'
+  | 'piscina-carriles'
+  | 'vista-aerea'
+  | 'torre-roca'
+  | 'rancho-piscina'
+  | 'panoramica-kioscos'
+  | 'ninos-piscina'
   | 'restaurante'
   | 'salon'
-  | 'academia'
-  | 'familia'
-  | 'amigos'
-  | 'celebracion'
-  | 'galeria-1'
-  | 'galeria-2'
-  | 'galeria-3'
-  | 'galeria-4'
-  | 'galeria-5'
-  | 'galeria-6'
 
 export type PhotoTone = 'lagoon' | 'water' | 'leaf' | 'sun'
 
@@ -37,47 +35,80 @@ export interface PhotoInfo {
   file: string
   /** Texto alternativo descriptivo para lectores de pantalla y buscadores. */
   alt: string
-  /** Qué debe mostrar la foto (se ve en el espacio vacío). */
+  /** Qué debe mostrar la foto (se ve en el espacio vacío si falta). */
   brief: string
   tone: PhotoTone
+  /** Punto de la foto que se mantiene visible al recortarla (CSS object-position). */
+  position?: string
 }
 
 export const photos: Record<PhotoId, PhotoInfo> = {
   hero: {
     file: 'hero',
-    alt: "Vista de las piscinas del Centro Recreativo Leke's en Siguatepeque",
-    brief: 'Vista amplia de la piscina principal en un día soleado',
+    alt: "Piscinas y kioscos de Leke's rodeados de palmeras, con las montañas de Siguatepeque de fondo",
+    brief: 'Vista amplia de las piscinas',
+    tone: 'water',
+    position: '55% 60%',
+  },
+  'kioscos-flores': {
+    file: 'kioscos-flores',
+    alt: 'Kioscos con mesas de piedra y banderines de colores junto a la piscina, entre palmeras y flores',
+    brief: 'Kioscos junto a la piscina',
+    tone: 'sun',
+  },
+  'piscina-puente': {
+    file: 'piscina-puente',
+    alt: 'Piscina con puente de madera, figura decorativa y juegos infantiles al fondo',
+    brief: 'Piscina con puente de madera',
     tone: 'water',
   },
-  'piscina-adultos': {
-    file: 'piscina-adultos',
-    alt: "Piscina para adultos en Leke's",
-    brief: 'Piscina para adultos',
+  'piscina-delfin': {
+    file: 'piscina-delfin',
+    alt: 'Piscina redonda con puente de madera, kioscos y un tobogán al fondo',
+    brief: 'Piscina con puente y tobogán',
     tone: 'water',
   },
-  'piscina-ninos': {
-    file: 'piscina-ninos',
-    alt: "Piscina para niños con figuras decorativas en Leke's",
-    brief: 'Piscina infantil y sus figuras',
-    tone: 'lagoon',
-  },
-  toboganes: {
-    file: 'toboganes',
-    alt: "Toboganes, cascadas y puentes sobre las piscinas de Leke's",
-    brief: 'Toboganes, delfines, cascadas o puentes',
-    tone: 'water',
-  },
-  'areas-verdes': {
-    file: 'areas-verdes',
-    alt: "Áreas verdes con árboles y flores en Leke's",
-    brief: 'Jardines, árboles y flores del lugar',
+  'jardin-arcos': {
+    file: 'jardin-arcos',
+    alt: 'Sendero con arcos cubiertos de flores y mesas de piedra en los jardines',
+    brief: 'Jardines con arcos de flores',
     tone: 'leaf',
   },
-  juegos: {
-    file: 'juegos',
-    alt: "Área de juegos infantiles en Leke's",
-    brief: 'Juegos infantiles y área de descanso',
+  'piscina-carriles': {
+    file: 'piscina-carriles',
+    alt: 'Piscina con carriles para nadar, decorada con banderines de colores',
+    brief: 'Piscina con carriles',
+    tone: 'lagoon',
+  },
+  'vista-aerea': {
+    file: 'vista-aerea',
+    alt: "Vista aérea de las piscinas y los toboganes de Leke's",
+    brief: 'Vista aérea',
+    tone: 'leaf',
+  },
+  'torre-roca': {
+    file: 'torre-roca',
+    alt: 'Piscina junto a la torre de roca, con sillas para tomar el sol',
+    brief: 'Piscina y torre de roca',
+    tone: 'water',
+  },
+  'rancho-piscina': {
+    file: 'rancho-piscina',
+    alt: 'Rancho techado junto a la piscina en un día soleado',
+    brief: 'Rancho junto a la piscina',
     tone: 'sun',
+  },
+  'panoramica-kioscos': {
+    file: 'panoramica-kioscos',
+    alt: 'Kioscos con mesas, piscinas y juegos infantiles, con las montañas de fondo',
+    brief: 'Vista general de las piscinas',
+    tone: 'leaf',
+  },
+  'ninos-piscina': {
+    file: 'ninos-piscina',
+    alt: 'Bañistas en una piscina redonda, con el puente de madera y los kioscos al fondo',
+    brief: 'Bañistas en la piscina',
+    tone: 'water',
   },
   restaurante: {
     file: 'restaurante',
@@ -91,79 +122,25 @@ export const photos: Record<PhotoId, PhotoInfo> = {
     brief: 'Salón de eventos montado para una celebración',
     tone: 'lagoon',
   },
-  academia: {
-    file: 'academia',
-    alt: "Clase de natación en la academia de Leke's",
-    brief: 'Clase de la academia de natación (con permiso de las familias)',
-    tone: 'water',
-  },
-  familia: {
-    file: 'familia',
-    alt: "Familia disfrutando de la piscina en Leke's",
-    brief: 'Familia en la piscina (con permiso de las personas)',
-    tone: 'water',
-  },
-  amigos: {
-    file: 'amigos',
-    alt: "Grupo de amigos pasando el día en Leke's",
-    brief: 'Grupo de amigos junto a la piscina',
-    tone: 'sun',
-  },
-  celebracion: {
-    file: 'celebracion',
-    alt: "Celebración familiar en Leke's",
-    brief: 'Cumpleaños o reunión familiar',
-    tone: 'leaf',
-  },
-  'galeria-1': {
-    file: 'galeria-1',
-    alt: "Instalaciones de Leke's",
-    brief: 'Foto de galería 1',
-    tone: 'water',
-  },
-  'galeria-2': {
-    file: 'galeria-2',
-    alt: "Instalaciones de Leke's",
-    brief: 'Foto de galería 2',
-    tone: 'leaf',
-  },
-  'galeria-3': {
-    file: 'galeria-3',
-    alt: "Instalaciones de Leke's",
-    brief: 'Foto de galería 3',
-    tone: 'lagoon',
-  },
-  'galeria-4': { file: 'galeria-4', alt: "Instalaciones de Leke's", brief: 'Foto de galería 4', tone: 'sun' },
-  'galeria-5': {
-    file: 'galeria-5',
-    alt: "Instalaciones de Leke's",
-    brief: 'Foto de galería 5',
-    tone: 'water',
-  },
-  'galeria-6': {
-    file: 'galeria-6',
-    alt: "Instalaciones de Leke's",
-    brief: 'Foto de galería 6',
-    tone: 'leaf',
-  },
 }
 
-/** Orden de la galería: las fotos de secciones también aparecen aquí. */
+/**
+ * Orden de la galería. Está pensado para el mosaico de 4 columnas de
+ * Gallery.tsx (`spans`): la primera foto es horizontal y ocupa 2×2, la 5.ª
+ * y la 7.ª son horizontales y ocupan 2 columnas, y las demás son verticales.
+ */
 export const galleryOrder: PhotoId[] = [
   'hero',
-  'piscina-ninos',
-  'toboganes',
-  'areas-verdes',
-  'salon',
-  'academia',
-  'restaurante',
-  'juegos',
-  'galeria-1',
-  'galeria-2',
-  'galeria-3',
-  'galeria-4',
-  'galeria-5',
-  'galeria-6',
+  'piscina-delfin',
+  'jardin-arcos',
+  'piscina-puente',
+  'panoramica-kioscos',
+  'piscina-carriles',
+  'ninos-piscina',
+  'kioscos-flores',
+  'vista-aerea',
+  'rancho-piscina',
+  'torre-roca',
 ]
 
 const files = import.meta.glob<string>('../assets/fotos/*.{jpg,jpeg,png,webp,avif}', {

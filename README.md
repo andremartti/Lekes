@@ -27,9 +27,10 @@ npm run preview   # revisa la versión compilada
 
 ### Fotografías
 
-Copia las fotos a `src/assets/fotos/` con los nombres de `src/assets/fotos/LEEME.md` (por ejemplo `hero.jpg`,
-`salon.jpg`, `academia.jpg`). El sitio las detecta solo; mientras falten, muestra un espacio marcado como
-"Foto pendiente". La galería ampliable se activa al haber al menos una foto.
+Las fotos del lugar están en `src/assets/fotos/`; `src/assets/fotos/LEEME.md` indica dónde aparece cada una.
+Para cambiar una foto, reemplaza el archivo con el mismo nombre. Aún faltan `salon.jpg` (salón de eventos) y
+`restaurante.jpg` (un platillo): al agregarlas, aparecen solas en su sección. Mientras tanto, Eventos muestra
+una vista general rotulada como tal y el restaurante, un panel con sus platillos.
 
 ### Datos pendientes de confirmar con el negocio
 
@@ -42,17 +43,21 @@ página los muestra con la etiqueta "Confirmar antes de visitar":
 - [ ] Precios de entrada vigentes (no se publican hasta confirmarlos; ver `prices` en `site.ts`).
 - [ ] Datos de la academia de natación: edades, horarios y costos (`academy.details`).
 - [ ] Logotipo oficial (el actual es una marca tipográfica provisional en `src/components/icons.tsx`).
+- [ ] Permiso para usar las fotos actuales en el sitio definitivo (propias del negocio o con permiso de su
+      autor), y fotos del salón y del restaurante.
 - [ ] Dominio definitivo (`siteUrl`), para generar `sitemap.xml`, canonical y `og:url`.
 
 ## Publicar
 
 ### Vista previa para el cliente (GitHub Pages)
 
-El flujo `.github/workflows/deploy.yml` compila y publica el sitio cada vez que hay cambios en `main`.
+La demo está en `https://andremartti.github.io/Lekes/`. El flujo `.github/workflows/deploy.yml` la compila
+y publica cada vez que hay cambios en la rama `claude/project-thread-jh4kml`; en `main` solo compila para
+comprobar que todo está bien.
 
-1. En GitHub, abre **Settings → Pages** y en **Source** elige **GitHub Actions** (solo la primera vez).
-2. Fusiona el PR en `main`, o ejecuta el flujo a mano desde **Actions → Publicar vista previa → Run workflow**.
-3. La demo queda en `https://andremartti.github.io/Lekes/`.
+Se publica desde esa rama porque el entorno `github-pages` del repositorio solo la acepta (fue la rama
+principal cuando se activó Pages). Para publicar desde `main`, en **Settings → Environments → github-pages →
+Deployment branches** agrega `main` y cambia la condición `if:` del trabajo `deploy` en el flujo.
 
 La vista previa lleva `noindex` para que Google no la indexe antes de que el negocio la apruebe. Para la versión
 definitiva, quita `PREVIEW: '1'` del flujo o publícala en el dominio del negocio.

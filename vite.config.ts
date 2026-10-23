@@ -17,7 +17,7 @@ function seo(): Plugin {
   const url = (process.env.SITE_URL || site.siteUrl).replace(/\/$/, '')
   // PREVIEW=1 marca la compilación como demo: no se indexa en buscadores.
   const preview = process.env.PREVIEW === '1'
-  const ogImage = `${url}/og-image.png`
+  const ogImage = `${url}/og-image.jpg`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -50,6 +50,7 @@ function seo(): Plugin {
     `<meta property="og:image" content="${ogImage}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escape(`Piscinas y kioscos de ${site.name}`)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     ...(url
       ? [`<link rel="canonical" href="${url}/" />`, `<meta property="og:url" content="${url}/" />`]

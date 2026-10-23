@@ -22,8 +22,8 @@ export function Hero() {
         <div className="hero-kenburns h-full w-full">
           <Photo id="hero" priority compact sizes="100vw" />
         </div>
-        <div className="from-ink/55 via-ink/25 to-ink/85 absolute inset-0 bg-gradient-to-b" />
-        <div className="from-ink/60 absolute inset-0 bg-gradient-to-r via-transparent to-transparent" />
+        <div className="from-ink/60 via-ink/35 to-ink/90 absolute inset-0 bg-gradient-to-b" />
+        <div className="from-ink/70 via-ink/20 absolute inset-0 bg-gradient-to-r to-transparent" />
       </div>
 
       {!photoSrc('hero') && (
@@ -50,10 +50,10 @@ export function Hero() {
         <p
           data-reveal
           style={{ ['--reveal-delay' as string]: '160ms' }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 sm:text-xl"
+          className="mt-6 max-w-xl text-lg leading-relaxed text-white/95 [text-shadow:0_1px_14px_rgb(12_40_48/0.7)] sm:text-xl"
         >
           Piscinas para grandes y pequeños, toboganes, jardines llenos de flores y un salón para celebrar.
-          Todo en {site.name}, en el corazón de Siguatepeque.
+          Todo en {site.name}, con las montañas de Siguatepeque de fondo.
         </p>
         <div
           data-reveal
@@ -72,11 +72,11 @@ export function Hero() {
         <p
           data-reveal
           style={{ ['--reveal-delay' as string]: '320ms' }}
-          className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/80"
+          className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/90 [text-shadow:0_1px_10px_rgb(12_40_48/0.8)]"
         >
           <Clock className="text-sun h-4 w-4" aria-hidden="true" />
           {hours.days}, {hours.open} – {hours.close}
-          {!site.hours.verificado && <span className="text-white/60">(horario por confirmar)</span>}
+          {!site.hours.verificado && <span className="text-white/75">(horario por confirmar)</span>}
         </p>
       </div>
 

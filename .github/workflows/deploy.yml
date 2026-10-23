@@ -2,7 +2,7 @@ name: Publicar vista previa
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/project-thread-jh4kml]
   workflow_dispatch:
 
 permissions:
@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -37,6 +37,10 @@ jobs:
           path: dist
 
   deploy:
+    # El entorno github-pages de este repositorio solo acepta publicar desde esta rama;
+    # en main el flujo solo compila. Para publicar desde main, permite esa rama en
+    # Settings → Environments → github-pages y cambia esta condición.
+    if: github.ref_name == 'claude/project-thread-jh4kml'
     needs: build
     runs-on: ubuntu-latest
     environment:

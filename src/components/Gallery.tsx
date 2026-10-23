@@ -5,22 +5,23 @@ import { site } from '../config/site'
 import { FacebookIcon, InstagramIcon } from './icons'
 import { Photo } from './Photo'
 
-/** Patrón de mosaico: algunas fotos ocupan más espacio para romper la cuadrícula. */
+/**
+ * Patrón del mosaico, en el orden de `galleryOrder`: fotos horizontales a lo
+ * ancho y verticales a lo alto. Con `grid-flow-row-dense` no quedan huecos
+ * aunque falte alguna foto.
+ */
 const spans = [
-  'sm:col-span-2 sm:row-span-2',
-  '',
+  'col-span-2 row-span-2',
   'sm:row-span-2',
-  '',
-  'sm:col-span-2',
-  '',
-  '',
   'sm:row-span-2',
-  '',
+  'sm:row-span-2',
   'sm:col-span-2',
-  '',
-  '',
-  '',
-  '',
+  'sm:row-span-2',
+  'sm:col-span-2',
+  'sm:row-span-2',
+  'sm:row-span-2',
+  'sm:row-span-2',
+  'sm:row-span-2',
 ]
 
 export function Gallery() {
@@ -60,13 +61,13 @@ export function Gallery() {
           </div>
         </div>
 
-        <ul className="mt-12 grid auto-rows-[11rem] grid-cols-2 gap-3 sm:auto-rows-[13rem] sm:grid-cols-4 sm:gap-4">
+        <ul className="mt-12 grid grid-flow-row-dense auto-rows-[11rem] grid-cols-2 gap-3 sm:auto-rows-[13rem] sm:grid-cols-4 sm:gap-4">
           {items.map((id, i) => (
             <li
               key={id}
               data-reveal
               style={{ ['--reveal-delay' as string]: `${(i % 4) * 70}ms` }}
-              className={`overflow-hidden rounded-[1.5rem] ${i === 0 ? 'col-span-2 row-span-2' : ''} ${spans[i] ?? ''}`}
+              className={`overflow-hidden rounded-[1.5rem] ${spans[galleryOrder.indexOf(id)] ?? ''}`}
             >
               {hasPhotos ? (
                 <button

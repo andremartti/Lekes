@@ -22,7 +22,7 @@ export function Academy() {
       <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="relative order-2 lg:order-1 lg:col-span-6" data-reveal>
           <div className="aspect-[4/5] overflow-hidden rounded-t-[12rem] rounded-b-[2rem] sm:aspect-[5/5]">
-            <Photo id="academia" sizes="(min-width: 1024px) 45vw, 100vw" />
+            <Photo id="piscina-carriles" sizes="(min-width: 1024px) 45vw, 100vw" />
           </div>
           <svg
             aria-hidden="true"
@@ -47,8 +47,8 @@ export function Academy() {
             Que aprendan a nadar <em className="text-lagoon-700">donde más se divierten.</em>
           </h2>
           <p className="text-ink/70 mt-6 max-w-lg text-lg leading-relaxed">
-            Leke's también tiene una academia de natación. Es la forma de que los niños ganen confianza en el
-            agua, en las mismas piscinas que ya conocen y disfrutan.
+            Leke's también tiene una academia de natación: una forma de que los niños ganen confianza en el
+            agua, en un lugar que ya conocen y disfrutan.
           </p>
 
           {details.length > 0 ? (
